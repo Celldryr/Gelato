@@ -21,15 +21,11 @@ final class Sale extends AbstractMigration
     {
         $table = $this->table('sale');
         $table->addColumn('user_id', 'integer')
+              ->addColumn('status', 'string', ['default' => 'pendiente'])
               ->addColumn('total_price', 'decimal', ['precision' =>10, 'scale' => 2])
               ->addColumn('is_deleted', 'boolean', ['default' =>false])
               ->addColumn('created_at', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
-              
-              ->addForeignKey('user_id', 'users', 'id', [
-                'delete'=>'RESTRICT',
-                'update'=>'CASCADE'
-              ])
-
+              ->addForeignKey('user_id', 'users', 'id')
               ->create();
     }
 }

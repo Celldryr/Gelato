@@ -23,17 +23,10 @@ final class SaleItem extends AbstractMigration
         $table->addColumn('sale_id', 'integer')
               ->addColumn('product_id', 'integer')
               ->addColumn('quantity', 'integer')
-              ->addColumn('price', 'decimal', ['precision' =>10, 'scale' => 2])
+              ->addColumn('price_at_sale', 'decimal', ['precision' =>10, 'scale' => 2])
               ->addColumn('is_deleted', 'boolean', ['default' =>false])
-              
-              ->addForeignKey('sale_id', 'sale', 'id', [
-                'delete'=>'RESTRICT',
-                'update'=>'CASCADE'
-              ])
-              ->addForeignKey('product_id', 'product', 'id', [
-                'delete'=>'RESTRICT',
-                'update'=>'CASCADE'
-              ])
+              ->addForeignKey('sale_id', 'sale', 'id', ['delete'=> 'CASCADE'])
+              ->addForeignKey('product_id', 'product', 'id')
 
               ->create();
     }

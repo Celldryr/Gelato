@@ -22,11 +22,7 @@ final class User extends AbstractMigration
         $table = $this->table('users');
         $table->addColumn('name', 'string', ['limit' => 101])
               ->addColumn('password', 'string')
-              ->addColumn('role', 'string', [
-                'limit' => 20,
-                'values' => ['vendedor', 'operador'],
-                'default' => 'operador'
-                ])
+              ->addColumn('role', 'string', ['default' => 'vendedor'])
               ->addColumn('is_deleted', 'boolean', ['default' =>false])
               ->addColumn('created_at', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
               ->create();

@@ -22,10 +22,10 @@ final class Product extends AbstractMigration
     public function change(): void
     {
         $table = $this->table('product');
-        $table->addColumn('name', 'string', ['limit' => 101])
+        $table->addColumn('sku', 'string', ['limit' => 101])
+              ->addColumn('name', 'string', ['limit' => 101])
               ->addColumn('description', 'text', ['null' => true])
               ->addColumn('price', 'decimal', ['precision' =>10, 'scale' => 2])
-              ->addColumn('Current_stock', 'integer', ['default' => 0])
               ->addColumn('is_deleted', 'boolean', ['default' => false])
               ->addColumn('created_at', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
               ->create();
