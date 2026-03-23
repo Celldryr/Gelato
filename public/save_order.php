@@ -27,10 +27,11 @@ try{
     );
 
     $pdo->beginTransaction(); //esto crea la transaccion
-
+    
+    $tablename = isset($data->table_name) ? $data->table_name : 'llevar';
     // esto registra los pedidos
-    $stmt = $pdo->prepare("INSERT INTO sale (user_id, total_price, status) VALUES (?, ?, 'pendiente') RETURNING id");
-    $stmt-> execute([$data->user_id, $data->total]);
+    $stmt = $pdo->prepare("INSERT INTO sale (user_id, total_price, table_name, status) VALUES (?, ?, ?, 'pendiente') RETURNING id");
+    $stmt-> execute([$data->user_id, $data->total, $tablename]);
     $saleId = $stmt->fetchColumn();
 
     
